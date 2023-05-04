@@ -1,14 +1,5 @@
 const { check, runTest, skipTest } = require("../../test-api/index.js");
 
-/*
-Instructions
-
-For these challenges complete the body of each function in turn.
-Run this file with Node to run the tests and check your function works correctly.
-Take a look at the tests to see what each function should be returning given various arguments.
-When you're ready to move on to the next function replace skipTest with runTest.
-*/
-
 // QUESTION 1
 
 function checkSameFinalCharacter() {

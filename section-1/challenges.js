@@ -38,7 +38,7 @@ function addMissingPunctuation() {
 }
 
 skipTest(
-  "addMissingPunctuation() returns the correct string length",
+  "addMissingPunctuation() returns the string with accurate punctuation",
   function () {
     check(addMissingPunctuation("Hello there!")).isEqualTo("Hello there!");
     check(addMissingPunctuation("How's it going?")).isEqualTo(

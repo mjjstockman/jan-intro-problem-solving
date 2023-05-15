@@ -1,4 +1,4 @@
-const { check, runTest, skipTest } = require("../../test-api/index.js");
+const { check, runTest, skipTest } = require("../test-api/index.js");
 
 function collectLikeTerms() {
   // Implement a function collectLikeTerms which takes an expression in a string like 'a + a + a'

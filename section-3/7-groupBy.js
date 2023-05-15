@@ -1,4 +1,4 @@
-const { check, runTest, skipTest } = require("../../test-api/index.js");
+const { check, runTest, skipTest } = require("../test-api/index.js");
 
 /*
 This function takes an array of objects and a string which should match a key of the objects in the array

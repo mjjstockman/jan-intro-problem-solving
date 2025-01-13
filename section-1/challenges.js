@@ -1,16 +1,17 @@
-const { check, runTest, skipTest } = require("../test-api/index.js");
+const { check, runTest, skipTest } = require('../test-api/index.js');
 
 // QUESTION 1
+// This function should take 2 strings and join them together with a space in between
+// return this newly created string
 
-function connectStrings() {
-  // This function should take 2 strings and join them together with a space in between
-  // return this newly created string
+function connectStrings(str, str1) {
+  return `${str} ${str1}`;
 }
 
-runTest("connectStrings() can join 2 strings together", function () {
-  check(connectStrings("hello", "world")).isEqualTo("hello world");
-  check(connectStrings("paul", "rogerson")).isEqualTo("paul rogerson");
-  check(connectStrings("blue", "sky")).isEqualTo("blue sky");
+runTest('connectStrings() can join 2 strings together', function () {
+  check(connectStrings('hello', 'world')).isEqualTo('hello world');
+  check(connectStrings('paul', 'rogerson')).isEqualTo('paul rogerson');
+  check(connectStrings('blue', 'sky')).isEqualTo('blue sky');
 });
 
 // QUESTION 2
@@ -20,12 +21,12 @@ function checkWordEndsWithIng() {
 }
 
 skipTest(
-  "checkWordEndsWithIng() can return true/false for a single word",
+  'checkWordEndsWithIng() can return true/false for a single word',
   function () {
-    check(checkWordEndsWithIng("doing")).isEqualTo(true);
-    check(checkWordEndsWithIng("eating")).isEqualTo(true);
-    check(checkWordEndsWithIng("bang")).isEqualTo(false);
-    check(checkWordEndsWithIng("singer")).isEqualTo(false);
+    check(checkWordEndsWithIng('doing')).isEqualTo(true);
+    check(checkWordEndsWithIng('eating')).isEqualTo(true);
+    check(checkWordEndsWithIng('bang')).isEqualTo(false);
+    check(checkWordEndsWithIng('singer')).isEqualTo(false);
   }
 );
 
@@ -38,14 +39,14 @@ function addMissingPunctuation() {
 }
 
 skipTest(
-  "addMissingPunctuation() returns the string with accurate punctuation",
+  'addMissingPunctuation() returns the string with accurate punctuation',
   function () {
-    check(addMissingPunctuation("Hello there!")).isEqualTo("Hello there!");
+    check(addMissingPunctuation('Hello there!')).isEqualTo('Hello there!');
     check(addMissingPunctuation("How's it going?")).isEqualTo(
       "How's it going?"
     );
     check(addMissingPunctuation("Yeah I'm good")).isEqualTo("Yeah I'm good.");
-    check(addMissingPunctuation("Nice.")).isEqualTo("Nice.");
+    check(addMissingPunctuation('Nice.')).isEqualTo('Nice.');
   }
 );
 
@@ -55,7 +56,7 @@ function getRemainder() {
   // This function should take two arguments a and b, and return the remainder of the division of a / b
 }
 
-skipTest("getRemainder() returns the correct remainder", function () {
+skipTest('getRemainder() returns the correct remainder', function () {
   check(getRemainder(10, 2)).isEqualTo(0);
   check(getRemainder(119, 10)).isEqualTo(9);
   check(getRemainder(50, 6)).isEqualTo(2);
@@ -68,11 +69,11 @@ function accessObject(obj, key) {
   // If the key doesn't exist on the object, this function should return a string of "property not found"
 }
 
-skipTest("accessObject() can access a property value using a key", function () {
-  check(accessObject({ name: "jonny", age: 32 }, "name")).isEqualTo("jonny");
-  check(accessObject({ name: "jonny", age: 32 }, "age")).isEqualTo(32);
-  check(accessObject({ name: "jonny", age: 32 }, "email")).isEqualTo(
-    "property not found"
+skipTest('accessObject() can access a property value using a key', function () {
+  check(accessObject({ name: 'jonny', age: 32 }, 'name')).isEqualTo('jonny');
+  check(accessObject({ name: 'jonny', age: 32 }, 'age')).isEqualTo(32);
+  check(accessObject({ name: 'jonny', age: 32 }, 'email')).isEqualTo(
+    'property not found'
   );
 });
 
@@ -84,17 +85,17 @@ function makeAllWordsBold(arr) {
 }
 
 skipTest(
-  "makeAllWordsBold() can convert all strings to be surrounded by double asterisks",
+  'makeAllWordsBold() can convert all strings to be surrounded by double asterisks',
   function () {
-    check(makeAllWordsBold(["hello", "there", "world"])).isEqualTo([
-      "**hello**",
-      "**there**",
-      "**world**"
+    check(makeAllWordsBold(['hello', 'there', 'world'])).isEqualTo([
+      '**hello**',
+      '**there**',
+      '**world**'
     ]);
-    check(makeAllWordsBold(["I", "love", "coding"])).isEqualTo([
-      "**I**",
-      "**love**",
-      "**coding**"
+    check(makeAllWordsBold(['I', 'love', 'coding'])).isEqualTo([
+      '**I**',
+      '**love**',
+      '**coding**'
     ]);
   }
 );
@@ -106,7 +107,7 @@ function getPositiveNumbers(arr) {
 }
 
 skipTest(
-  "getPositiveNumbers() can get all the positive numbers from an array of numbers",
+  'getPositiveNumbers() can get all the positive numbers from an array of numbers',
   function () {
     check(getPositiveNumbers([1, -1, 2, -2, 3, -3])).isEqualTo([1, 2, 3]);
     check(getPositiveNumbers([-80, 9, 100, 13, 20, -7])).isEqualTo([

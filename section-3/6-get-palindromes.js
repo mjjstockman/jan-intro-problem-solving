@@ -1,37 +1,45 @@
-const { check, runTest, skipTest } = require("../test-api/index.js");
+const { check, runTest, skipTest } = require('../test-api/index.js');
 
 /*
   This function takes an array of words and returns an array containing only the palindromes.
   A palindrome is a word that is spelled the same way backwards.
   E.g. ['foo', 'racecar', 'pineapple', 'porcupine', 'tacocat'] =>  ['racecar', 'tacocat']
 */
-function getPalindromes(words) {}
+function getPalindromes(words) {
+  if (!words.length) {
+    return [];
+  }
+  const isPalindrome = words.filter(
+    (word) => word === word.split('').reverse().join('')
+  );
+  return isPalindrome;
+}
 
-console.log("getPalindromes()");
+console.log('getPalindromes()');
 
-runTest("returns [] when passed []", function () {
+runTest('returns [] when passed []', function () {
   check(getPalindromes([])).isEqualTo([]);
 });
 
-skipTest("identifies palindromes", function () {
-  check(getPalindromes(["racecar"])).isEqualTo(["racecar"]);
-  check(getPalindromes(["racecar", "racecar"])).isEqualTo([
-    "racecar",
-    "racecar"
+runTest('identifies palindromes', function () {
+  check(getPalindromes(['racecar'])).isEqualTo(['racecar']);
+  check(getPalindromes(['racecar', 'racecar'])).isEqualTo([
+    'racecar',
+    'racecar'
   ]);
 });
 
-skipTest("ignores non-palindromes", function () {
-  check(getPalindromes(["racecar", "kayak", "tacocat"])).isEqualTo([
-    "racecar",
-    "kayak",
-    "tacocat"
+runTest('ignores non-palindromes', function () {
+  check(getPalindromes(['racecar', 'kayak', 'tacocat'])).isEqualTo([
+    'racecar',
+    'kayak',
+    'tacocat'
   ]);
-  check(getPalindromes(["pineapple", "pony", "racecar"])).isEqualTo([
-    "racecar"
+  check(getPalindromes(['pineapple', 'pony', 'racecar'])).isEqualTo([
+    'racecar'
   ]);
 });
 
-skipTest("returns [] when passed no palindromes", function () {
-  check(getPalindromes(["pineapple", "watermelon", "pony"])).isEqualTo([]);
+runTest('returns [] when passed no palindromes', function () {
+  check(getPalindromes(['pineapple', 'watermelon', 'pony'])).isEqualTo([]);
 });

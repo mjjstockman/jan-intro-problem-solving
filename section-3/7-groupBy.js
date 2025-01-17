@@ -1,4 +1,4 @@
-const { check, runTest, skipTest } = require("../test-api/index.js");
+const { check, runTest, skipTest } = require('../test-api/index.js');
 
 /*
 This function takes an array of objects and a string which should match a key of the objects in the array
@@ -29,28 +29,37 @@ The function returns an object where the keys represent the matching values and 
   ]
 }
 */
-function groupBy(array, key) {}
+function groupBy(array, key) {
+  return array.reduce((acc, obj) => {
+    const keyValue = obj[key];
+    if (!acc[keyValue]) {
+      acc[keyValue] = [];
+    }
+    acc[keyValue].push(obj);
+    return acc;
+  }, {});
+}
 
-console.log("groupBy()");
+console.log('groupBy()');
 
-runTest("groups northcoders by location", function () {
+runTest('groups northcoders by location', function () {
   const northcoders = [
-    { name: "douglas", location: "manchester" },
-    { name: "liam", location: "york" },
-    { name: "jim", location: "leeds" },
-    { name: "haz", location: "manchester" },
-    { name: "dave", location: "leeds" }
+    { name: 'douglas', location: 'manchester' },
+    { name: 'liam', location: 'york' },
+    { name: 'jim', location: 'leeds' },
+    { name: 'haz', location: 'manchester' },
+    { name: 'dave', location: 'leeds' }
   ];
-  const result = groupBy(northcoders, "location");
+  const result = groupBy(northcoders, 'location');
   check(result).isEqualTo({
     manchester: [
-      { name: "douglas", location: "manchester" },
-      { name: "haz", location: "manchester" }
+      { name: 'douglas', location: 'manchester' },
+      { name: 'haz', location: 'manchester' }
     ],
-    york: [{ name: "liam", location: "york" }],
+    york: [{ name: 'liam', location: 'york' }],
     leeds: [
-      { name: "jim", location: "leeds" },
-      { name: "dave", location: "leeds" }
+      { name: 'jim', location: 'leeds' },
+      { name: 'dave', location: 'leeds' }
     ]
   });
 });

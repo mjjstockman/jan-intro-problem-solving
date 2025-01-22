@@ -3,7 +3,7 @@ const { check, runTest, skipTest } = require('./test-api/index.js');
 // using .forEach() get the sum of an input array of numbers
 function sumNumbers(nums) {
   let sum = 0; // <- don't change this line
-  const total = nums.forEach((num) => console.log((sum += num)));
+  const total = nums.forEach((num) => (sum += num));
 
   return sum;
 }
@@ -98,10 +98,12 @@ runTest(
   }
 );
 
+// using .filter() return an array of only the snacks which you can afford with the amount of money provided (refer to test below for an example of the input array)
 function affordableSnacks(snacks, money) {
-  // using .filter() return an array of only the snacks which you can afford with the amount of money provided (refer to test below for an example of the input array)
+  const canAfford = snacks.filter((snack) => snack.cost <= money);
+  return canAfford;
 }
-skipTest('finds the items less than or equal to an amount of money', () => {
+runTest('finds the items less than or equal to an amount of money', () => {
   const vendingMachine = [
     { item: 'Mars Bar', cost: 0.65 },
     { item: 'Nik Naks', cost: 1.39 },

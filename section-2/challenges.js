@@ -22,11 +22,12 @@ runTest(
 
 // QUESTION 2
 
-function isAllUpperCase() {
+function isAllUpperCase(str) {
   // This function should take a string as an argument and return true if every letter is upper case and false if at least one character is not
+  return str === str.toUpperCase();
 }
 
-skipTest('isAllUpperCase() checks if every letter is upper case', function () {
+runTest('isAllUpperCase() checks if every letter is upper case', function () {
   check(isAllUpperCase('hello')).isEqualTo(false);
   check(isAllUpperCase('YEAH')).isEqualTo(true);
   check(isAllUpperCase('Well HELLO!')).isEqualTo(false);
@@ -37,9 +38,10 @@ skipTest('isAllUpperCase() checks if every letter is upper case', function () {
 
 function collectTheVowels(str) {
   // This function should take a string as its argument and return a string consisting of all vowels found in the input (retaining the order)
+  return str.replace(/[^aeiou]/gi, '');
 }
 
-skipTest(
+runTest(
   'collectTheVowels() takes a string of many letters and returns a string containing those vowels in correct order',
   function () {
     check(collectTheVowels('a')).isEqualTo('a');
@@ -53,11 +55,17 @@ skipTest(
 
 function accessItem(arr, index) {
   // This function should take two arguments, an array and an index, and return the element at that specified index
-  // The index provided may be equal to or greater than the length of the given array. In this case, rather than counting past the end of the array where there are no values, the indexing should be considered to "loop back around" and continue from the start of the array
+  // The index provided may be equal to or greater than the length of the given array. In this case,
+  // rather than counting past the end of the array where there are no values, the indexing should be considered
+  // to "loop back around" and continue from the start of the array
   // For examples of this behaviour, look at the second group of tests below
+  if (index < arr.length) {
+    return arr[index];
+  }
+  return arr[index % arr.length];
 }
 
-skipTest(
+runTest(
   'accessItem() can access an item inside in an array with a given index below the array length',
   function () {
     check(accessItem(['a', 'b', 'c', 'd'], 2)).isEqualTo('c');
@@ -66,7 +74,7 @@ skipTest(
   }
 );
 
-skipTest(
+runTest(
   'accessItem() can access an item inside in an array with an index equal to or above the array length',
   function () {
     check(accessItem(['a', 'b', 'c', 'd'], 4)).isEqualTo('a');
@@ -79,12 +87,22 @@ skipTest(
 // QUESTION 5
 
 function findDayOfTheWeek(num) {
+  const daysOfWeek = {
+    1: 'Monday',
+    2: 'Tuesday',
+    3: 'Wednesday',
+    4: 'Thursday',
+    5: 'Friday',
+    6: 'Saturday',
+    7: 'Sunday'
+  };
+  return daysOfWeek[num];
   // This function should take a number from 1 to 7 inclusive, and return a string of the corresponding day of the week
 }
 
 // BONUS POINTS: Try and solve this without using if statements! Hint: a 'lookup object' might be useful here.
 
-skipTest(
+runTest(
   'findDayOfTheWeek() returns the day of the week given a passed number',
   function () {
     check(findDayOfTheWeek(2)).isEqualTo('Tuesday');
@@ -97,11 +115,13 @@ skipTest(
 
 // QUESTION 6
 
-function createPercentage() {
+function createPercentage(num1, num2) {
   // This function should take two numbers, a and b, and return a string representing the value of a as a percentage of b
+  const perCent = Math.round((num1 / num2) * 100);
+  return `${perCent}%`;
 }
 
-skipTest(
+runTest(
   'createPercentage() creates a percentage string in the form "--%"',
   function () {
     check(createPercentage(1, 2)).isEqualTo('50%');
@@ -114,11 +134,15 @@ skipTest(
 
 // QUESTION 7
 
-function extractNumber() {
+function extractNumber(str) {
   // This function should take a string containing a number wrapped in a pair of round brackets and return said number
+  const firstBracketPosition = str.indexOf('(') + 1;
+  const lastBracketPosition = str.indexOf(')');
+  const chars = str.slice(firstBracketPosition, lastBracketPosition);
+  return Number(chars);
 }
 
-skipTest(
+runTest(
   'extractNumber() should return the number buried inside a string',
   function () {
     check(extractNumber('lasjdasasj(123)asljdlajk')).isEqualTo(123);
